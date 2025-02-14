@@ -9,7 +9,7 @@ import Foundation
 import Testing
 @testable import FetchRecipes
 
-struct FetchRecipesTests {
+struct NetworkManagerTests {
     let recipesValidJsonData = """
 {
     "recipes": [
@@ -646,7 +646,7 @@ struct FetchRecipesTests {
     @Test
     func malformedDataThrowsError() throws {
         #expect(throws: DecodingError.self) {
-            _ = try JSONDecoder().decode([RecipeDTO].self, from: malformedData ?? Data())
+            _ = try JSONDecoder().decode([Recipe].self, from: malformedData ?? Data())
         }
     }
 }

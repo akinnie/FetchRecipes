@@ -7,22 +7,23 @@
 
 import Foundation
 
-protocol NetworkManagerProtocol {
-    var decodeRecipesFromData: (Data?) throws -> [RecipeDTO]? { get }
-}
+//protocol NetworkManagerProtocol {
+//    var recipesData: (String) async throws -> Data? { get }
+//    var decodeRecipesFromData: (Data?) throws -> [Recipe]? { get }
+//}
 
-class NetworkManager: NetworkManagerProtocol {
+class NetworkManager {
     static let shared = NetworkManager()
     static let urlString = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
     static let malformedDataUrlString = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-malformed.json"
 
-    var recipes: (String) async throws -> Data? = { urlString in
+    var recipesData: (String) async throws -> Data? = { urlString in
         guard let url = URL(string: urlString) else { return nil }
         let (data, _) = try await URLSession.shared.data(from: url)
         return data
     }
     
-    var decodeRecipesFromData: (Data?) throws -> [RecipeDTO]? = { data in
+    var decodeRecipesFromData: (Data?) throws -> [Recipe]? = { data in
         guard let data else {
             return nil
         }

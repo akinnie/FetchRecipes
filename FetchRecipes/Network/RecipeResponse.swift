@@ -6,5 +6,5 @@
 //
 
 struct RecipeResponse: Decodable {
-    let recipes: [RecipeDTO]
+    let recipes: [Recipe]
 }
