@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@Observable class RecipeViewModel {
+@Observable class RecipeListViewModel {
     let networkManager: NetworkManager
     private(set) var recipes: [Recipe] = []
     private(set) var isLoading = false

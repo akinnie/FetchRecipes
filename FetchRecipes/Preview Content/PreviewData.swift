@@ -32,4 +32,8 @@ extension Recipe {
     static var singleRecipePreviewData: Recipe {
         Recipe(id: "test", cuisine: "Ethiopian", name: "Sega Wat", photoURLLarge: nil, photoURLSmall: "https://i0.wp.com/mealsbymavis.com/wp-content/uploads/2020/03/kai-sega-wot_1-scaled.jpg?fit=1080%2C720&ssl=1", sourceUrl: "https://mealsbymavis.com/kai-sega-wat-spicy-ethiopian-beef-stew/", youtubeUrl: nil)
     }
+
+    static var singleRecipeInvalidImagePreviewData: Recipe {
+        Recipe(id: "test", cuisine: "Ethiopian", name: "Sega Wat", photoURLLarge: nil, photoURLSmall: "https://not.a.valid.url", sourceUrl: "https://mealsbymavis.com/kai-sega-wat-spicy-ethiopian-beef-stew/", youtubeUrl: nil)
+    }
 }

@@ -12,11 +12,26 @@ struct RecipeView: View {
 
     var body: some View {
         HStack {
-            if let photoURL = URL(string: recipe.photoURLSmall ?? "") {
-                LoadingImage(url: photoURL)
-                    .frame(width: 60, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-                    .background(Color.gray.tertiary)
+            if let url = recipe.photoURLSmall {
+                CachedAsyncImage(url: url) { phase in
+                    switch phase {
+                    case .failure:
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .foregroundStyle(.gray)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 60, height: 60)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            .background(Color.gray.tertiary)
+                    default:
+                        ProgressView()
+                            .frame(width: 80, height: 80)
+                    }
+                }
             }
             VStack(alignment: .leading) {
                 Group {
@@ -34,5 +49,11 @@ struct RecipeView: View {
 #Preview {
     List {
         RecipeView(recipe: .singleRecipePreviewData)
+    }
+}
+
+#Preview("Bad Image") {
+    List {
+        RecipeView(recipe: .singleRecipeInvalidImagePreviewData)
     }
 }

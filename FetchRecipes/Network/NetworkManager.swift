@@ -7,11 +7,6 @@
 
 import Foundation
 
-//protocol NetworkManagerProtocol {
-//    var recipesData: (String) async throws -> Data? { get }
-//    var decodeRecipesFromData: (Data?) throws -> [Recipe]? { get }
-//}
-
 class NetworkManager {
     static let shared = NetworkManager()
     static let urlString = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
